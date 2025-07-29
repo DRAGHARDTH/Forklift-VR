@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 434b14025eac76c4e93f87295d3c8a78
+timeCreated: 1484121035
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 80275
+  packageName: Controllable Forklift Free
+  packageVersion: 1.1
+  assetPath: Assets/FreeForkLift/Scenes/free.unity
+  uploadId: 302578
