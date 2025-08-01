@@ -26,13 +26,6 @@ public class ForkController : MonoBehaviour
     public XRKnob forkLever;
 
 
-    [Header("Lever Behavior")]
-   
-    [Tooltip("Speed at which the lever returns to neutral when released.")]
-    public float leverReturnSpeed = 100f;
-    [Tooltip("Angle threshold (in degrees) before fork begins to move.")]
-    public float forkActivationThreshold = 10f;
-
     // === RUNTIME STATE ===
     private bool isLeverGrabbed = false;
 
@@ -59,22 +52,27 @@ public class ForkController : MonoBehaviour
 
     void FixedUpdate()
     {
+        float leverValue = forkLever.value;
+        
         if (isLeverGrabbed)
         {
 
-            float leverValue = forkLever.value;
 
-            if (leverValue > 0.65f)
+            if (leverValue < 0.35f)
             {
                 // Move fork down
                 fork.localPosition = Vector3.MoveTowards(fork.localPosition, forkMinHeight, forkLiftSpeed * Time.deltaTime);
             }
-            else if (leverValue < 0.35f)
+            else if (leverValue > 0.65f)
             { // Move fork up
                 fork.localPosition = Vector3.MoveTowards(fork.localPosition, forkMaxHeight, forkLiftSpeed * Time.deltaTime);
 
             }
 
+        }
+        else
+        {
+            forkLever.value = Mathf.MoveTowards(forkLever.value, 0.5f, Time.fixedDeltaTime * 1.5f);
         }
 
     }

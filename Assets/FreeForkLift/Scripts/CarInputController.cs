@@ -9,15 +9,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class CarInputController : MonoBehaviour
 {
     // === DRIVE CONTROL SYSTEM ===
-    [Header("Drive Lever Setup")]
-    [Tooltip("The lever GameObject used to control driving.")]
+    [Header("Drive Control System")]
     public XRKnob driveLever;
-
     public XRKnob steeringWheel;
-
-    [Header("Steering")]
-    [Tooltip("Use Input Axis for horizontal steering (can be replaced by a VR steering wheel script).")]
-    public bool useKeyboardSteering = true;
 
     // === RUNTIME ===
     private CarMovementController carController;
@@ -71,38 +65,38 @@ public class CarInputController : MonoBehaviour
         // === Drive Input via Lever ===
         float driveInput = 0f;
 
+        // === Brake Input ===
+        float brakeInput = 0f;
+
 
         float leverValue = driveLever.value;
         float steerValue = steeringWheel.value;
 
-       
+
         if (isLeverGrabbed)
         {
-            if (leverValue > 0.65f)
-            {
-                driveInput = -1f;
-            }
-            else if (leverValue < 0.35f)
-            {
-
-                driveInput = 1f;
-            }
+            // Map lever value (0–1) to -1 to 1
+            driveInput = (leverValue - 0.5f) * 2f;
+        }
+        else
+        {
+            driveLever.value = Mathf.MoveTowards(driveLever.value, 0.5f, Time.fixedDeltaTime * 1.5f);
+            driveInput = 0f;
+            brakeInput = 1.5f; 
         }
 
         if (isSteerGrabbed)
         {
-            if (steerValue > 0.65f)
-            {
-                steerInput = 1f;
-            }
-            else if (steerValue < 0.35f)
-            {
-
-                steerInput = -1f;
-            }
+            // Map steering wheel value (0–1) to -1 to 1
+            steerInput = (steerValue - 0.5f) * 2f;
+        }
+        else
+        {
+            steeringWheel.value = Mathf.MoveTowards(steeringWheel.value, 0.5f, Time.fixedDeltaTime * 1.5f);
+            steerInput = 0f;
         }
 
-        carController.Move(steerInput, driveInput, driveInput, 0f);
+        carController.Move(steerInput, driveInput, driveInput, brakeInput);
 
     }
 }

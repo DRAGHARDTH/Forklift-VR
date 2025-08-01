@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GamePlayFlowManager : StateMachine
 {
-    public static GamePlayFlowManager instance;
+    public static GamePlayFlowManager Instance;
 
     public override void Start()
     {
         base.Start();
-        instance = this;
+        Instance = this;
     }
     private void OnEnable()
     {
@@ -31,6 +31,17 @@ public class GamePlayFlowManager : StateMachine
     #region State Machine Implementation
     public override void AddStates()
     {
+        AddState<MainMenuState>();
+        AddState<EnterForkliftState>();
+        AddState<StartIgnitionState>();
+        AddState<DriveLeverTestState>();
+        AddState<SteeringTestState>();
+        AddState<ForkLiftTestState>();
+        AddState<MoveToCrateState>();
+        AddState<DepositCrateState>();
+        AddState<ExitForkliftState>();
+
+        SetInitialState<MainMenuState>();
        
     }
 
