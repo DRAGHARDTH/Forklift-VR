@@ -1,0 +1,84 @@
+<VoiceLines_DataModel>
+	<VoiceLines>
+		<VoiceLine>
+			<Id>0</Id>
+			<FileName>step00_intro.mp3</FileName>
+			<Subtitle>Training simulation initiated\n\nFollow the on-screen instructions to complete your forklift training.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>1</Id>
+			<FileName>step01_enter_forklift.mp3</FileName>
+			<Subtitle>Step 1: Enter the Forklift\n\nPress the button below to climb into the forklift.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>2</Id>
+			<FileName>step02_start_ignition.mp3</FileName>
+			<Subtitle>Step 2: Start the Forklift\n\nPress the ignition button to start the engine.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>3</Id>
+			<FileName>step03_drive_forward.mp3</FileName>
+			<Subtitle>Step 3: Drive Control Test\n\nPush the drive lever forward to move ahead.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>4</Id>
+			<FileName>step03_drive_backward.mp3</FileName>
+			<Subtitle>Step 3: Drive Control Test\n\nPull the drive lever backward to reverse.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>5</Id>
+			<FileName>step04_steer_right.mp3</FileName>
+			<Subtitle>Step 4: Steering Test\n\nTurn the steering wheel fully to the right.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>6</Id>
+			<FileName>step04_steer_left.mp3</FileName>
+			<Subtitle>Step 4: Steering Test\n\nNow turn the steering wheel fully to the left.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>7</Id>
+			<FileName>step05_forklift_up.mp3</FileName>
+			<Subtitle>Step 5: Forklift Test\n\nPush the fork control lever up to lift the forks.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>8</Id>
+			<FileName>step05_forklift_down.mp3</FileName>
+			<Subtitle>Step 5: Forklift Test\n\nPull the fork control lever down to lower the forks.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>9</Id>
+			<FileName>step06_position_crate.mp3</FileName>
+			<Subtitle>Step 6: Position for the Crate\n\nDrive forward until the forks are lined up under the crate.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>10</Id>
+			<FileName>step06_lift_crate.mp3</FileName>
+			<Subtitle>Step 6: Position for the Crate\n\nUse the lift control to raise the crate for transport.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>11</Id>
+			<FileName>step07_transport_crate.mp3</FileName>
+			<Subtitle>Step 7: Transport the Crate\n\nDrive to the highlighted drop-off zone.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>12</Id>
+			<FileName>step07_lower_crate.mp3</FileName>
+			<Subtitle>Step 7: Transport the Crate\n\nLower the forks to set the crate down.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>13</Id>
+			<FileName>step08_back_away.mp3</FileName>
+			<Subtitle>Step 8: Back Away\n\nReverse the forklift away from the stacked crate.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>14</Id>
+			<FileName>step09_lower_forks.mp3</FileName>
+			<Subtitle>Step 9: Final Fork Position\n\nFully lower the forks to their resting position.</Subtitle>
+		</VoiceLine>
+		<VoiceLine>
+			<Id>15</Id>
+			<FileName>step10_training_complete.mp3</FileName>
+			<Subtitle>Congratulations!\n\nYou have completed the forklift operation training.\nYou’re now ready to put your skills into practice.</Subtitle>
+		</VoiceLine>
+	</VoiceLines>
+</VoiceLines_DataModel>

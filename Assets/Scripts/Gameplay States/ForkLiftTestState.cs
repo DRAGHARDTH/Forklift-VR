@@ -68,19 +68,18 @@ public class ForkLiftTestState : State
 
     private void ShowLiftUpPrompt()
     {
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 5: Forklift Test\n\nPush the fork control lever up and hold to lift the forks.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(7);
     }
 
     private void ShowLowerDownPrompt()
     {
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 5: Forklift Test\n\nPull the fork control lever down and hold to lower the forks.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(8);
     }
 
     private void OnForkLiftTestComplete()
     {
         Debug.Log("Forklift lift/lower test complete!");
+        TrainingDataManager.Instance.LogAction("Forklift lift/lower test complete");
         GamePlayFlowManager.Instance.ChangeState<MoveToCrateState>(); // Replace with your actual next state
     }
 

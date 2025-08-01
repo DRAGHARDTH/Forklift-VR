@@ -9,7 +9,7 @@ public class StartIgnitionState : State
     {
         base.Enter();
         UIReferences.Instance.canvas_ObjectTooltip.SetActive(true);
-        UIReferences.Instance.txt_ObjectToolTip.text = "Step 2: Start the Forklift\n\nLocate and press the ignition button to power up the forklift.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(2);
         UIReferences.Instance.canvas_ObjectTooltip.transform.SetParent(Global.Instance.go_IgnitionButton.transform, false);
         UIReferences.Instance.canvas_ObjectTooltip.transform.localPosition = new Vector3(0f, 0.25f, 0f);
         AddListeners();
@@ -44,6 +44,7 @@ public class StartIgnitionState : State
 
     void IgnitionButtonClicked(SelectEnterEventArgs arg)
     {
+        TrainingDataManager.Instance.LogAction("Ignition Started");
         GamePlayFlowManager.Instance.ChangeState<DriveLeverTestState>();
     }
 

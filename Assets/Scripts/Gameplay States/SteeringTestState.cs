@@ -47,19 +47,18 @@ public class SteeringTestState : State
 
     private void ShowRightTurnPrompt()
     {
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 4: Steering Test\n\nTurn the steering wheel fully to the right.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(5);
     }
 
     private void ShowLeftTurnPrompt()
     {
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 4: Steering Test\n\nNow turn the steering wheel fully to the left.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(6);
     }
 
     private void OnSteeringTestComplete()
     {
         Debug.Log("Steering test complete!");
+        TrainingDataManager.Instance.LogAction("Steering test complete");
         GamePlayFlowManager.Instance.ChangeState<ForkLiftTestState>();
     }
 

@@ -15,10 +15,8 @@ public class MoveToCrateState : State
         Global.Instance.go_CrateHighlight.transform.localPosition = new Vector3(0f, 0.66522f, 0f);
 
 
-        // Show tooltip above crate
         UIReferences.Instance.canvas_ObjectTooltip.SetActive(true);
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 6: Move to the target crate\n\nDrive the forklift so the forks are positioned under the crate.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(9);
         UIReferences.Instance.canvas_ObjectTooltip.transform.SetParent(Global.Instance.go_IgnitionButton.transform, false);
         UIReferences.Instance.canvas_ObjectTooltip.transform.localPosition = new Vector3(0f, .25f, 0f);
     }
@@ -31,6 +29,7 @@ public class MoveToCrateState : State
         if (AreForksUnderCrate())
         {
             Debug.Log("Forks under crate — ready to lift!");
+            TrainingDataManager.Instance.LogAction("Forks under the crate");
             GamePlayFlowManager.Instance.ChangeState<DepositCrateState>();
         }
     }

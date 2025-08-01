@@ -68,19 +68,18 @@ public class DriveLeverTestState : State
 
     private void ShowForwardPrompt()
     {
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 3: Drive Control Test\n\nPush the drive lever forward and hold to move forward.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(3);
     }
 
     private void ShowBackwardPrompt()
     {
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 3: Drive Control Test\n\nPull the drive lever backward and hold to move backward.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(4);
     }
 
     private void OnDriveTestComplete()
     {
         Debug.Log("Drive lever test complete!");
+        TrainingDataManager.Instance.LogAction("Drive lever test complete");
         GamePlayFlowManager.Instance.ChangeState<SteeringTestState>();
     }
 

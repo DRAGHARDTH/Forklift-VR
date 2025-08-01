@@ -33,12 +33,13 @@ public class MainMenuState: State
     void RemoveListeners()
     {
         UIReferences.Instance.btn_StartButton.onClick.RemoveListener(StartButtonClicked);
-        UIReferences.Instance.btn_ExitButton.onClick.RemoveListener(StartButtonClicked);
+        UIReferences.Instance.btn_ExitButton.onClick.RemoveListener(ExitButtonClicked);
     }
 
 
     void StartButtonClicked()
     {
+        TrainingDataManager.Instance.StartSession();
         GamePlayFlowManager.Instance.ChangeState<EnterForkliftState>();
     }
 

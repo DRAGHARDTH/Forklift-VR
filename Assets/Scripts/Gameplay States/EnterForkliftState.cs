@@ -41,6 +41,7 @@ public class EnterForkliftState : State
     {
         GameManager.Instance.Teleport(Global.Instance.go_PlayerPosition.GetComponent<TeleportationAnchor>());
         Global.Instance.go_Player.transform.SetParent(Global.Instance.go_PlayerPosition.transform);
+        TrainingDataManager.Instance.LogAction("Entered Forklift");
         GamePlayFlowManager.Instance.ChangeState<StartIgnitionState>();
     }
 
@@ -49,13 +50,13 @@ public class EnterForkliftState : State
     private IEnumerator ShowInitialTooltipSequence()
     {
         // Show initial message
-        UIReferences.Instance.txt_GeneralToolTip.text = "Simulation Started\n\nFollow the prompts to complete the training.";
+        UIReferences.Instance.txt_GeneralToolTip.text = TooltipManager.Instance.PlayVoice(0);
         UIReferences.Instance.btn_ActionButton1.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(4.5f);
 
         // Update to 'Enter Forklift' prompt
-        UIReferences.Instance.txt_GeneralToolTip.text = "Step 1: Enter the Forklift\n\nBy pressing the button below.";
+        UIReferences.Instance.txt_GeneralToolTip.text = TooltipManager.Instance.PlayVoice(1);
         UIReferences.Instance.btn_ActionButton1.gameObject.SetActive(true);
         UIReferences.Instance.txt_ActionButton1Text.text = "Enter ForkLift";
 

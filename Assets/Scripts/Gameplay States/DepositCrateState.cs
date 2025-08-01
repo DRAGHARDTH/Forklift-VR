@@ -12,8 +12,7 @@ public class DepositCrateState : State
 
         // Show tooltip to lift the crate
         UIReferences.Instance.canvas_ObjectTooltip.SetActive(true);
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 6: Lift the Crate\n\nUse the lift control to raise the crate for transport.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(10);
         UIReferences.Instance.canvas_ObjectTooltip.transform.SetParent(Global.Instance.go_IgnitionButton.transform);
         UIReferences.Instance.canvas_ObjectTooltip.transform.localPosition = new Vector3(0f, .25f, 0f);
 
@@ -47,6 +46,7 @@ public class DepositCrateState : State
             if (IsCrateLowered())
             {
                 Debug.Log("Crate deposited successfully!");
+                TrainingDataManager.Instance.LogAction("Crate deposited successfully");
                 GamePlayFlowManager.Instance.ChangeState<ExitForkliftState>();
             }
         }
@@ -69,8 +69,7 @@ public class DepositCrateState : State
     private void ShowDropOffPrompt()
     {
         // Update tooltip
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 7: Transport the Crate\n\nDrive to the highlighted drop-off area and lower the crate.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(11);
 
         // Show drop-off highlight
         Global.Instance.go_CrateHighlight.SetActive(true);
@@ -81,8 +80,7 @@ public class DepositCrateState : State
 
     private void ShowLowerForksPrompt()
     {
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 7: Lower the Crate\n\nUse the lift control to lower the forks and deposit the crate.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(12);
     }
 
     private bool IsCrateAtDropOff()

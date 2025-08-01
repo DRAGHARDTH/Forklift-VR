@@ -19,6 +19,7 @@ public class Global : MonoBehaviour
 
     [Header("Target Crate Highlight System")]
     public GameObject go_TargetCrate;
+    public Transform tr_TargetCrateStartPose;
     public GameObject go_CrateHighlight;
     public GameObject go_TargetDropOffPose;
 

@@ -15,8 +15,7 @@ public class ExitForkliftState : State
         AddListeners();
 
         UIReferences.Instance.canvas_ObjectTooltip.SetActive(true);
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 8: Back Away\n\nReverse the forklift away from the stacked crate.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(13);
         UIReferences.Instance.canvas_ObjectTooltip.transform.SetParent(Global.Instance.go_IgnitionButton.transform);
         UIReferences.Instance.canvas_ObjectTooltip.transform.localPosition = new Vector3(0f, .25f, 0f);
     }
@@ -68,8 +67,7 @@ public class ExitForkliftState : State
 
     private void ShowLowerForkPrompt()
     {
-        UIReferences.Instance.txt_ObjectToolTip.text =
-            "Step 9: Lower the Forks\n\nUse the lift control to fully lower the forks.";
+        UIReferences.Instance.txt_ObjectToolTip.text = TooltipManager.Instance.PlayVoice(14);
     }
 
     private bool AreForksLowered()
@@ -83,9 +81,15 @@ public class ExitForkliftState : State
         // Hide tooltip and show main menu canvas
         UIReferences.Instance.canvas_ObjectTooltip.SetActive(false);
         UIReferences.Instance.canvas_GeneralToolTip.SetActive(true);
+        TrainingDataManager.Instance.LogAction("Forklift Safely shut off");
+
+
+        // Hide the forklift
+        Global.Instance.go_Player.transform.SetParent(null);
+        Global.Instance.go_ForkLift.SetActive(false);
 
         // Change button labels for restart/quit
-        UIReferences.Instance.txt_GeneralToolTip.text = "Congratulations! \r\nYou have successfully completed the forklift operation training.\r\nYou are now ready to put your skills into practice.";
+        UIReferences.Instance.txt_GeneralToolTip.text = TooltipManager.Instance.PlayVoice(15);
         UIReferences.Instance.btn_ActionButton1.gameObject.SetActive(true);
         UIReferences.Instance.btn_ActionButton2.gameObject.SetActive(true);
         UIReferences.Instance.txt_ActionButton1Text.text = "Restart Training";
@@ -111,11 +115,15 @@ public class ExitForkliftState : State
 
     private void RestartTraining()
     {
+        TrainingDataManager.Instance.EndSession();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 
     private void Quit()
     {
+        TrainingDataManager.Instance.EndSession();
+
         Application.Quit();
     }
 }
