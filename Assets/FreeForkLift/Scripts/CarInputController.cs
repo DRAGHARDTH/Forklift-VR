@@ -6,12 +6,22 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 
 [RequireComponent(typeof(CarMovementController))]
+[RequireComponent(typeof(AudioSource))]
 public class CarInputController : MonoBehaviour
 {
     // === DRIVE CONTROL SYSTEM ===
     [Header("Drive Control System")]
     public XRKnob driveLever;
     public XRKnob steeringWheel;
+
+
+    // === AUDIO CONTROL SYSTEM ===
+    [Header("Audio Settings")]
+    public AudioSource engineAudioSource;
+    public AudioClip ignitionClip;
+    public AudioClip engineLoopClip;
+    public float minPitch = 0.8f;
+    public float maxPitch = 1.6f;
 
     // === RUNTIME ===
     private CarMovementController carController;
@@ -21,6 +31,7 @@ public class CarInputController : MonoBehaviour
     private void Awake()
     {
         carController = GetComponent<CarMovementController>();
+        engineAudioSource = GetComponent<AudioSource>();
         if (driveLever != null)
         {
             driveLever.selectEntered.AddListener(OnLeverGrab);
@@ -32,7 +43,35 @@ public class CarInputController : MonoBehaviour
             steeringWheel.selectEntered.AddListener(OnSteerGrab);
             steeringWheel.selectExited.AddListener(OnSteerRelease);
         }
+    }
 
+    private void Start()
+    {
+        // Play ignition first
+        if (ignitionClip != null)
+        {
+            engineAudioSource.loop = false;
+            engineAudioSource.clip = ignitionClip;
+            engineAudioSource.Play();
+
+            // Start engine loop after ignition sound length
+            Invoke(nameof(StartEngineLoop), ignitionClip.length);
+        }
+        else
+        {
+            StartEngineLoop();
+        }
+    }
+
+    private void StartEngineLoop()
+    {
+        if (engineLoopClip != null)
+        {
+            engineAudioSource.loop = true;
+            engineAudioSource.clip = engineLoopClip;
+            engineAudioSource.pitch = minPitch;
+            engineAudioSource.Play();
+        }
     }
 
     private void OnDestroy()
@@ -97,6 +136,14 @@ public class CarInputController : MonoBehaviour
         }
 
         carController.Move(steerInput, driveInput, driveInput, brakeInput);
+
+        // === AUDIO PITCH CONTROL ===
+        if (engineAudioSource != null && engineAudioSource.isPlaying && engineAudioSource.loop)
+        {
+            // Estimate speed from velocity magnitude
+            float speed01 = Mathf.InverseLerp(0f, carController.MaxSpeed, carController.CurrentSpeed);
+            engineAudioSource.pitch = Mathf.Lerp(minPitch, maxPitch, speed01);
+        }
 
     }
 }

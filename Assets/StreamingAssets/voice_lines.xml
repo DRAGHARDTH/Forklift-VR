@@ -78,7 +78,7 @@
 		<VoiceLine>
 			<Id>15</Id>
 			<FileName>step10_training_complete.mp3</FileName>
-			<Subtitle>Congratulations!\n\nYou have completed the forklift operation training.\nYou’re now ready to put your skills into practice.</Subtitle>
+			<Subtitle>Congratulations!\nYou have completed the forklift operation training.\nYou’re now ready to put your skills into practice.</Subtitle>
 		</VoiceLine>
 	</VoiceLines>
 </VoiceLines_DataModel>

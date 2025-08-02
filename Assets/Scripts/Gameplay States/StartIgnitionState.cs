@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Filtering;
@@ -45,6 +46,8 @@ public class StartIgnitionState : State
     void IgnitionButtonClicked(SelectEnterEventArgs arg)
     {
         TrainingDataManager.Instance.LogAction("Ignition Started");
+        Global.Instance.go_ForkLift.GetComponent<CarInputController>().enabled = true;
+        Global.Instance.go_ForkLift.GetComponent<ForkController>().enabled = true;
         GamePlayFlowManager.Instance.ChangeState<DriveLeverTestState>();
     }
 
